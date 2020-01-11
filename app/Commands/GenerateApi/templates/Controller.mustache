@@ -1,0 +1,30 @@
+'use strict'
+const {{Model}}Transformer = use('App/Transformers/{{Model}}Transformer')
+
+class {{Model}}Controller {
+    async show({transform, service, queryParams}) {
+        const records = await service.getAll(queryParams)
+            .paginate(queryParams.page, queryParams.perPage)
+        return await transform.paginate(records, {{Model}}Transformer)
+    }
+
+    async single({transform, {{Model}} }) {
+        return await transform.item({{Model}}, {{Model}}Transformer)
+    }
+
+    async add({transform, service, body}) {
+        let record = await service.create(body)
+        return transform.item(record, {{Model}}Transformer)
+    }
+
+    async update({body, service, {{Model}}, transform}) {
+        let record = await service.update({{Model}}, body)
+        return await transform.item(record, {{Model}}Transformer)
+    }
+
+    async delete({service, {{Model}} }) {
+        return await service.delete({{Model}})
+    }
+}
+
+module.exports = {{Model}}Controller

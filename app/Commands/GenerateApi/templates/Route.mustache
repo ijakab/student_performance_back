@@ -1,0 +1,105 @@
+'use strict'
+const Route = use('Route')
+
+module.exports = Route.group(() => {
+
+    /*---SECTION--*/
+
+    /**
+    * ~apiGVersion v1
+    * ~apiVisibility
+    * ~apiType protected
+    *
+    * @api {get} /v1/{{prefix}}/{{modelCamel}}/filter Show {{Model}} collection
+    * @apiGroup {{Model}}
+    *
+    * @apiVersion 1.0.0
+    * @apiDescription Show all {{modelCamel}}s
+    * @apiName Show all {{modelCamel}}
+    *
+    */
+
+    Route.post('/filter', '{{Model}}Controller.show').middleware([
+        'serviceCreator:{{Model}}Service',
+        'handleFilters'
+    ])
+
+
+    /*---SECTION--*/
+
+    /**
+    * ~apiGVersion v1
+    * ~apiVisibility
+    * ~apiType protected
+    *
+    * @api {get} /v1/{{prefix}}/{{modelCamel}}/get/:id Get single {{modelCamel}}
+    * @apiGroup {{Model}}
+    *
+    * @apiVersion 1.0.0
+    * @apiDescription Get single {{modelCamel}}
+    * @apiName Show single {{modelCamel}}
+    *
+    */
+
+    Route.get('/get/:id', '{{Model}}Controller.single').middleware([
+    ])
+
+
+    /*---SECTION--*/
+
+    /**
+    * ~apiGVersion v1
+    * ~apiVisibility user global
+    * ~apiType protected
+    *
+    * @api {post} /v1/{{prefix}}/{{modelCamel}}/create Add new {{modelCamel}}
+    * @apiGroup {{Model}}
+    *
+    * @apiVersion 1.0.0
+    * @apiDescription Create new {{modelCamel}}
+    * @apiName {{modelCamel}} creation
+    *
+    */
+
+    Route.post('/create', '{{Model}}Controller.add').middleware([
+    ])
+
+    /*---SECTION--*/
+
+    /**
+    * ~apiGVersion v1
+    * ~apiVisibility user global
+    * ~apiType protected
+    *
+    * @api {patch} /v1/{{modelCamel}}/update/:id Update instance of {{modelCamel}}
+    * @apiGroup {{Model}}
+    *
+    * @apiVersion 1.0.0
+    * @apiDescription Update an instance of {{modelCamel}}
+    * @apiName {{modelCamel}} update
+    *
+    */
+
+    Route.patch('/update/:id', '{{Model}}Controller.update').middleware([
+    ])
+
+    /*---SECTION--*/
+
+    /**
+    * ~apiGVersion v1
+    * ~apiVisibility user global
+    * ~apiType protected
+    *
+    * @api {delete} /v1/{{prefix}}/{{modelCamel}}/delete/:id Delete instance of {{modelCamel}}
+    * @apiGroup {{Model}}
+    *
+    * @apiVersion 1.0.0
+    * @apiDescription Delete an instance of {{modelCamel}}
+    * @apiName {{modelCamel}} delete
+    *
+    */
+
+    Route.delete('/delete/:id', '{{Model}}Controller.delete').middleware([
+    ])
+
+})

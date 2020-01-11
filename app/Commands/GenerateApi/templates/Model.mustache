@@ -1,0 +1,21 @@
+'use strict'
+
+const Model = use('Model')
+const addStandardTraits = use('App/Helpers/AddStandardTraits')
+
+class {{Model}} extends Model {
+
+    static boot() {
+        super.boot()
+        addStandardTraits(this)
+    }
+
+    static get AttributeConfig() {
+        return 'App/Models/Attributes/{{Model}}'
+    }
+
+    //DO NOT REMOVE COMMENT ON THE LINE BELOW (RELATIONS) IF YOU ARE USING make:relation COMMAND!!!
+    /* RELATIONS */
+}
+
+module.exports = {{Model}}

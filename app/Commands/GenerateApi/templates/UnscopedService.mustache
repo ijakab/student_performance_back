@@ -1,0 +1,22 @@
+'use strict'
+const {{Model}} = use('App/Models/{{Model}}')
+const BaseService = use('App/Services/BaseService')
+
+//Unscoped services handle actions not on single record, such as filtering or creating
+//Do not write complicated logic in services (if possible) from service, as it should be independent of execution context
+//Make sure to call methods of BaseService, as they handle a some logic
+
+class {{Model}}Service extends BaseService{
+
+    constructor(ctx) {
+        super(ctx, {{Model}});
+    }
+
+    async handleInputs() {}
+
+    create(data) {
+    }
+
+}
+
+module.exports = {{Model}}Service

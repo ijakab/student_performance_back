@@ -1,0 +1,53 @@
+module.exports = [
+    {
+        name: 'id',
+        addToResponse: true,
+        userWritable: false,
+        canSortBy: true,
+        canFilterBy: true,
+        canSearchBy: false,
+        isJSON: false,
+        validateRule: 'number',
+        sanitizeRule: '',
+        required: true, // even thou it is required, we generate it so user does not need to send it
+        listConfig: {
+            mandatory: true,
+            name: 'entityId',
+            type: 'number'
+        }
+    },
+    {
+        name: 'created_at',
+        addToResponse: true,
+        userWritable: false,
+        canSortBy: true,
+        canFilterBy: true,
+        canSearchBy: false,
+        isJSON: false,
+        validateRule: 'date',
+        sanitizeRule: 'to_date',
+        required: false,
+        listConfig: {
+            mandatory: false,
+            name: 'created at',
+            type: 'date'
+        }
+    },
+    {
+        name: 'updated_at',
+        addToResponse: true,
+        userWritable: false,
+        canSortBy: true,
+        canFilterBy: true,
+        canSearchBy: false,
+        isJSON: false,
+        validateRule: 'date',
+        sanitizeRule: 'to_date',
+        required: false,
+        listConfig: {
+            mandatory: false,
+            name: 'updated at',
+            type: 'date'
+        }
+    }
+]

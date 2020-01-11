@@ -1,0 +1,28 @@
+'use strict'
+const BaseTransformer = use('App/Transformers/BaseTransformer')
+
+class {{Model}}Transformer extends BaseTransformer {
+
+    availableInclude() {
+        return [
+
+        ]
+    }
+
+    defaultInclude() {
+        return [
+
+        ]
+    }
+
+    async transform(model, ctx) {
+        let additional = this.getAdditional(ctx)
+        return BaseTransformer.responseSubset(model)
+    }
+
+    includeSomething() {
+        return pick(model, model.constructor.addToResponse)
+    }
+}
+
+module.exports = {{Model}}Transformer

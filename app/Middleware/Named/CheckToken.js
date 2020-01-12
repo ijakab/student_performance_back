@@ -9,7 +9,11 @@ class CheckToken {
     async handle(ctx, next) {
 
         // set token extracted payload to context if it's valid and not expired
-        ctx.token = await ctx.auth._verifyToken(ctx.auth.getAuthHeader())
+        let tokenPayload = await ctx.auth._verifyToken(ctx.auth.getAuthHeader())
+        ctx.user = {
+            id: tokenPayload.uid,
+            role: tokenPayload.data.role
+        }
 
         await next()
     }

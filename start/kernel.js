@@ -34,7 +34,7 @@ const globalMiddleware = [
 |
 */
 const namedMiddleware = {
-    serviceCreator: 'App/Middleware/Named/ServiceCreator',
+    scoperCreator: 'App/Middleware/Named/ScoperCreator',
     throttle: 'Adonis/Middleware/ThrottleRequests',
     checkToken: 'App/Middleware/Named/CheckToken',
 }

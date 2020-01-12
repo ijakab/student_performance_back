@@ -48,7 +48,9 @@ class AuthController {
         if (!validPass) return response.badRequest('auth.invalidPasswordOrUsername')
 
         // generate tokens
-        const token = await this._generateUserTokens(auth, user)  // you can add token payload if needed as third parameter
+        const token = await this._generateUserTokens(auth, user, {
+            role: user.role
+        })  // you can add token payload if needed as third parameter
 
         response.ok({
             user: user.toJSON(),

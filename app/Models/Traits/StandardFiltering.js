@@ -1,5 +1,5 @@
 'use strict'
-const BaseService = use('App/Services/BaseService')
+const throwError = use('App/Helpers/ThrowError')
 
 class StandardFiltering {
     register (Model, customOptions = {}) {
@@ -22,9 +22,9 @@ class StandardFiltering {
 
     handleOrdering(q, {sort}) {
         if(sort && sort.param) {
-            if(!this._options.orderFields.includes(sort.param)) BaseService.throwError(400, `Unrecognized sort param '${sort.param}'`)
+            if(!this._options.orderFields.includes(sort.param)) throwError(400, `Unrecognized sort param '${sort.param}'`)
             let mode = sort.order || 'asc'
-            if(!['asc', 'desc', 'ASC', 'DESC'].includes(mode)) BaseService.throwError(400, `Unrecognized sort mode '${mode}'`)
+            if(!['asc', 'desc', 'ASC', 'DESC'].includes(mode)) throwError(400, `Unrecognized sort mode '${mode}'`)
             q.orderBy(sort.param, mode)
         } else {
             if(this._options.orderFields.includes('created_at')) q.orderBy('created_at', 'desc')
@@ -61,8 +61,8 @@ class StandardFiltering {
     }
 
     _handleDefaultFilter(q, {key, value}) {
-        if(!key || value === undefined) BaseService.throwError(400, 'Invalid filter sent, no key or value key on it')
-        if(!this.Model.keyedAttributeConfig[key] || !this.Model.keyedAttributeConfig[key].canFilterBy) BaseService.throwError(400, `Unrecognized filter ${key} on model ${this.Model.name}`)
+        if(!key || value === undefined) throwError(400, 'Invalid filter sent, no key or value key on it')
+        if(!this.Model.keyedAttributeConfig[key] || !this.Model.keyedAttributeConfig[key].canFilterBy) throwError(400, `Unrecognized filter ${key} on model ${this.Model.name}`)
         if(this.Model.keyedAttributeConfig[key].isTime) return this._timeFilter(q, {key, value})
         if(typeof value !== 'object' || Array.isArray(value) || value === null) {
             value = {
@@ -91,7 +91,7 @@ class StandardFiltering {
     }
 
     _timeFilter (q, {key, value}) {
-        if(!Array.isArray(value) || value.length !== 2) BaseService.throwError(400, `Invalid filter ${key}, array of length 2 expected`)
+        if(!Array.isArray(value) || value.length !== 2) throwError(400, `Invalid filter ${key}, array of length 2 expected`)
         q.whereBetween(key, value)
     }
 }

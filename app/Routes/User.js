@@ -53,6 +53,20 @@ module.exports = Route.group(() => {
     ])
     
     /**
+     * @api {post} api/user/get/:id Filter user
+     * @apiGroup User
+     * @apiVersion 1.0.0
+     *
+     * @apiSuccessExample {json} Success
+     *
+     *
+     */
+    
+    Route.get('/get/:id', 'UserController.single').middleware([
+        'checkToken'
+    ])
+    
+    /**
      * @api {post} api/user/create Create user
      * @apiGroup User
      * @apiVersion 1.0.0

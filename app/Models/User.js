@@ -19,7 +19,7 @@ class User extends Model {
     }
     
     static get Serializer() {
-        return 'App/Models/Serializers/Base'
+        return 'App/Models/Serializers/User'
     }
     
     static get _AttributeConfig() {

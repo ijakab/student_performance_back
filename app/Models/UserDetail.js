@@ -3,7 +3,7 @@
 const Model = use('Model')
 const addStandardTraits = use('App/Helpers/AddStandardTraits')
 
-class User extends Model {
+class UserDetail extends Model {
     
     // --- CONFIGURATION
     static boot() {
@@ -22,4 +22,4 @@ class User extends Model {
     
 }
 
-module.exports = User
+module.exports = UserDetail

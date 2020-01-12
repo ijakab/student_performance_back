@@ -9,6 +9,10 @@ class UserController {
         return await this.userRepository.paginate(request.all())
     }
     
+    async single({params}) {
+        return await this.userRepository.reloadForResponse(params.id)
+    }
+    
     async create({adminUserScoper, request}) {
         let user = await adminUserScoper.create(request.all())
         return this.userRepository.reloadForResponse(user.id)

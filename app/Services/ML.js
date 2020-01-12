@@ -20,7 +20,7 @@ class MLService {
         let body = {Inputs: {input1: { ColumnNames: [], Values: [[]] }}, GlobalParameters: {}}
         for(let feature of allFeatures) {
             body.Inputs.input1.ColumnNames.push(feature)
-            let value = userDetails[feature] || ''
+            let value = userDetails[feature] || '0'
             body.Inputs.input1.Values[0].push(value)
         }
 

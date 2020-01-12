@@ -4,7 +4,7 @@ const Route = use('Route')
 module.exports = Route.group(() => {
     
     /**
-     * @api {post} api/user/create Create user
+     * @api {post} api/user/filter Filter user
      * @apiGroup User
      * @apiVersion 1.0.0
      *

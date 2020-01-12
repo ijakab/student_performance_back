@@ -15,18 +15,23 @@ class UserController {
     
     async create({adminUserScoper, request}) {
         let user = await adminUserScoper.create(request.all())
-        return this.userRepository.reloadForResponse(user.id)
+        return await this.userRepository.reloadForResponse(user.id)
     }
     
     async update({adminUserScoper, request, params}) {
         let user = await adminUserScoper.update(params.id, request.all())
-        return this.userRepository.reloadForResponse(user.id)
+        return await this.userRepository.reloadForResponse(user.id)
     }
     
     async delete({adminUserScoper, params}) {
         let user = await this.userRepository.reloadForResponse(params.id)
         await adminUserScoper.delete(user.id)
         return user
+    }
+    
+    async addDetails({userDetailsScoper, request}) {
+        await userDetailsScoper.addDetails(request.all())
+        return await this.userRepository.reloadForResponse(userDetailsScoper.accessedUser.id)
     }
 }
 

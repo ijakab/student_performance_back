@@ -32,6 +32,14 @@ class UserRepository extends BaseRepository {
         }
         return user
     }
+    
+    async addDetails(user, data) {
+        let details = user.getRelated('details')
+        if(!details) details = await user.details().create({})
+        
+        details.merge(data)
+        await details.save()
+    }
 }
 
 module.exports = UserRepository

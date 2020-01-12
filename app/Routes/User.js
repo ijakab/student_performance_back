@@ -159,4 +159,63 @@ module.exports = Route.group(() => {
         'scoperCreator:User/Admin,adminUserScoper'
     ])
     
+    /**
+     * @api {post} api/user/addDetails/:id Add user details
+     * @apiGroup User
+     * @apiVersion 1.0.0
+     *
+     * @apiParamExample {json} Sample
+     * {
+	"age": "2",
+	"sex": "no"
+}
+     *
+     * @apiSuccessExample {json} Success
+     * {
+    "data": {
+        "id": 1,
+        "username": "admin",
+        "email": "ivan.jakab0@gmail.com",
+        "firstname": "Ivan",
+        "lastname": "Jakab",
+        "role": "admin",
+        "created_at": "2020-01-12T17:45:27.000Z",
+        "details": {
+            "age": "2",
+            "sex": "no",
+            "address": "",
+            "famsize": "",
+            "Pstatus": "",
+            "Medu": "",
+            "Fedu": "",
+            "Mjob": "",
+            "Fjob": "",
+            "traveltime": "",
+            "studytime": "",
+            "activities": "",
+            "higher": "",
+            "internet": "",
+            "romantic": "",
+            "freetime": "",
+            "goout": "",
+            "Dalc": "",
+            "Walc": "",
+            "absences": "",
+            "G3": ""
+        }
+    },
+    "message": "",
+    "code": "",
+    "debug": {
+        "untranslatedMsg": ""
+    }
+}
+     * @apiDescription Everything is string
+     */
+    
+    Route.post('/addDetails/:id', 'UserController.addDetails').middleware([
+        'checkToken',
+        'scoperCreator:UserDetails/User,userDetailsScoper,id'
+    ])
+    
 })

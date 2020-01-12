@@ -11,13 +11,3 @@ module.exports = function (modelInstance) {
     }
     return base
 }
-
-hooks.before.aceCommand(async () => {
-    try {
-        const {closeAll} = use('Queue/Helpers')
-        await closeAll()
-    } catch (e) {
-        console.error('closeAll error happened', e)
-    }
-    
-})

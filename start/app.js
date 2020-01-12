@@ -12,8 +12,11 @@
  */
 const providers = [
     '@adonisjs/framework/providers/AppProvider',
+    '@adonisjs/auth/providers/AuthProvider',
     '@adonisjs/bodyparser/providers/BodyParserProvider',
     '@adonisjs/cors/providers/CorsProvider',
+    'adonis-cache/providers/CacheProvider',
+    '@adonisjs/antl/providers/AntlProvider',
     '@adonisjs/lucid/providers/LucidProvider',
     '@adonisjs/validator/providers/ValidatorProvider',
     '@adonisjs/ally/providers/AllyProvider',
@@ -51,8 +54,6 @@ const aceProviders = [
  |
  */
 const aliases = {
-    Cache: 'Adonis/Addons/Cache',
-    Scheduler: 'Adonis/Addons/Scheduler'
 }
 
 /*

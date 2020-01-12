@@ -29,7 +29,7 @@ class AuthController {
         response.badRequest('auth.emailExists')
     }
 
-    async login({request, response, auth, transform}) {
+    async login({request, response, auth}) {
 
         const {username, password} = request.only(['username', 'password'])
 
@@ -51,9 +51,8 @@ class AuthController {
         const token = await this._generateUserTokens(auth, user)  // you can add token payload if needed as third parameter
 
         response.ok({
-            user: await transform.item(user, 'User'),
-            token: token.token,
-            refreshToken: token.refreshToken
+            user: user.toJSON(),
+            token: token.token
         })
     }
 
@@ -84,7 +83,6 @@ class AuthController {
     async _generateUserTokens(auth, user, customPayload) {
 
         return await auth
-            .withRefreshToken()
             .generate(user, customPayload)
 
         // TODO Read NOTE below

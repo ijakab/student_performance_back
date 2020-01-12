@@ -25,6 +25,10 @@ class Base {
     async update(...params) {
         return await this.repository.update(...params)
     }
+    
+    async delete(...params) {
+        return await this.repository.delete(...params)
+    }
 }
 
 module.exports = Base

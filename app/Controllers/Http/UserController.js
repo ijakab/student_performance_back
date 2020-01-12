@@ -18,6 +18,12 @@ class UserController {
         let user = await adminUserScoper.update(params.id, request.all())
         return this.userRepository.reloadForResponse(user.id)
     }
+    
+    async delete({adminUserScoper, params}) {
+        let user = await this.userRepository.reloadForResponse(params.id)
+        await adminUserScoper.delete(user.id)
+        return user
+    }
 }
 
 module.exports = UserController

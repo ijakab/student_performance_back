@@ -132,4 +132,17 @@ module.exports = Route.group(() => {
         'scoperCreator:User/Admin,adminUserScoper'
     ])
     
+    /**
+     * @api {delete} api/user/delete/:id Delete user
+     * @apiGroup User
+     * @apiVersion 1.0.0
+     *
+     *
+     */
+    
+    Route.delete('/delete/:id', 'UserController.delete').middleware([
+        'checkToken',
+        'scoperCreator:User/Admin,adminUserScoper'
+    ])
+    
 })

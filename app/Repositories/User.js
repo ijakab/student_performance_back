@@ -19,8 +19,7 @@ class UserRepository extends BaseRepository {
     }
     
     async update(id, data) {
-        let user = await this.getSingle(id).firstOrFail()
-        await super.update(user, data)
+        let user = await super.update(id, data)
         if(data.email) {
             await user.accounts().update({
                 email: data.email,

@@ -17,6 +17,22 @@ class UserRepository extends BaseRepository {
         })
         return user
     }
+    
+    async update(id, data) {
+        let user = await this.getSingle(id).firstOrFail()
+        await super.update(user, data)
+        if(data.email) {
+            await user.accounts().update({
+                email: data.email,
+            })
+        }
+        if(data.password) {
+            await user.accounts().update({
+                password: data.password
+            })
+        }
+        return user
+    }
 }
 
 module.exports = UserRepository

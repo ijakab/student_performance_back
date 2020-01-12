@@ -21,6 +21,10 @@ class Base {
     async create(...params) {
         return await this.repository.create(...params)
     }
+    
+    async update(...params) {
+        return await this.repository.update(...params)
+    }
 }
 
 module.exports = Base

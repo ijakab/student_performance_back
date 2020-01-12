@@ -92,4 +92,44 @@ module.exports = Route.group(() => {
         'scoperCreator:User/Admin,adminUserScoper'
     ])
     
+    /**
+     * @api {patch} api/user/update/:id Update user
+     * @apiGroup User
+     * @apiVersion 1.0.0
+     *
+     * @apiParamExample {json} Sample
+     * {
+	"username": "teacher",
+	"password": "teacher",
+	"email": "teacher@teacher.com",
+	"role": "teacher",
+	"firstname": "teacher",
+	"lastname": "teacher"
+}
+     *
+     * @apiSuccessExample {json} Success
+     * {
+    "data": {
+        "id": 11,
+        "username": "teacher",
+        "email": "teacher@teacher.com",
+        "firstname": "teacher",
+        "lastname": "teacher",
+        "role": "teacher",
+        "created_at": "2020-01-12T15:03:25.000Z"
+    },
+    "message": "",
+    "code": "",
+    "debug": {
+        "untranslatedMsg": ""
+    }
+}
+     *
+     */
+    
+    Route.patch('/update/:id', 'UserController.update').middleware([
+        'checkToken',
+        'scoperCreator:User/Admin,adminUserScoper'
+    ])
+    
 })

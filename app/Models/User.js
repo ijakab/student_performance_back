@@ -13,6 +13,7 @@ class User extends Model {
         addStandardTraits(this)
         
         this.queryMacro('withSingleResponseData', function () {
+            this.with('details')
             return this
         })
     }
@@ -32,6 +33,10 @@ class User extends Model {
 
     tokens() {
         return this.hasMany('App/Models/Token')
+    }
+    
+    details() {
+        return this.hasOne('App/Models/UserDetail')
     }
 
     // --- CUSTOM

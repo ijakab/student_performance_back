@@ -1,0 +1,53 @@
+variables:
+  # if false, pm2 will try to start process with PM2_NAME, else enter path to pm2.json and pm2 will run that file on start
+  JSTEAM_USE_PM2: "false"
+  JSTEAM_PATH: "/var/www/ijakab/student_performance/back"
+  JSTEAM_HOST: "jsteam.gaussx.com"
+  JSTEAM_PM2_NAME: "1360 Student Performance Back"
+  JSTEAM_DEPLOY_USER: "deploy"
+
+build jsteam:
+  stage: build
+  image: node:10.15.3
+  only:
+    - jsteam
+  tags:
+    - jsteam
+  artifacts:
+    expire_in: 8 hours
+    paths:
+      - ./
+  cache:
+    paths:
+      - node_modules/
+  script:
+    - npm install --progress=false
+    - echo -e "$JSTEAM_ENV\n\n" > .env
+    - npm run docs
+    - rm -rf .git
+
+
+deploy jsteam:
+  stage: deploy
+  image: alpine
+  variables:
+    GIT_STRATEGY: none
+  only:
+    - jsteam
+  tags:
+    - jsteam
+  script:
+    - find $(pwd) -type d -exec chmod 755 {} \;
+    - find $(pwd) -type f -exec chmod 644 {} \;
+    - apk add --no-cache rsync openssh
+    - mkdir -p ~/.ssh
+    - echo "$JSTEAM_DEPLOY_PRIVATE_KEY" >> ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - rsync -rav --delete ./ $JSTEAM_DEPLOY_USER@$JSTEAM_HOST:$JSTEAM_PATH
+    - >-
+      ssh $JSTEAM_DEPLOY_USER@$JSTEAM_HOST "
+        cd $JSTEAM_PATH
+        node ace migration:run --force
+        if [ "$JSTEAM_USE_PM2" = "false" ] ; then pm2 start \"$JSTEAM_PM2_NAME\" --update-env ; else pm2 start "$JSTEAM_USE_PM2" ; fi
+      "

@@ -11,6 +11,10 @@ class User extends Model {
         this.addTrait('Paginable')
         this.addTrait('IdOrSlug', {slug: 'username'})
         addStandardTraits(this)
+        
+        this.queryMacro('withSingleResponseData', function () {
+            return this
+        })
     }
     
     static get Serializer() {

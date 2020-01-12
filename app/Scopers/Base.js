@@ -17,6 +17,10 @@ class Base {
         await instance.getScope(...params)
         return instance
     }
+    
+    async create(...params) {
+        return await this.repository.create(...params)
+    }
 }
 
 module.exports = Base

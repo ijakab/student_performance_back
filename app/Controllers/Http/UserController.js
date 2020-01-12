@@ -1,6 +1,13 @@
+const UserRepository = use('App/Repositories/User')
+
 class UserController {
-    async create({adminUserScoper}) {
-        return {}
+    constructor() {
+        this.userRepository = new UserRepository()
+    }
+    
+    async create({adminUserScoper, request}) {
+        let user = await adminUserScoper.create(request.all())
+        return this.userRepository.reloadForResponse(user.id)
     }
 }
 

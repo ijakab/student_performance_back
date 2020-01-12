@@ -24,6 +24,12 @@ class BaseService {
             .where('id', id)
     }
     
+    async reloadForResponse(id) {
+        let q = this.getSingle(id)
+        if(q.withSingleResponseData) q.withSingleResponseData()
+        return await q.first()
+    }
+    
     async create(userParams, forceParams = {}) {
         const allowedParams = BaseService.allowedInput(userParams, this.Model.allowed)
         Object.assign(allowedParams, forceParams)

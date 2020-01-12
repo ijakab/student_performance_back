@@ -29,6 +29,10 @@ class BaseService {
         return await q.first()
     }
     
+    async paginate(filters) {
+        return await this.getAll(filters).paginable(filters)
+    }
+    
     async create(userParams, forceParams = {}) {
         const allowedParams = BaseService.allowedInput(userParams, this.Model.allowed)
         Object.assign(allowedParams, forceParams)

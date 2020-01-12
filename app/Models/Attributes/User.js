@@ -62,7 +62,7 @@ module.exports = [
     {
         name: 'role',
         addToResponse: true,
-        userWritable: false,
+        userWritable: true,
         canSortBy: true,
         canFilterBy: true,
         canSearchBy: true,
@@ -79,8 +79,8 @@ module.exports = [
         canFilterBy: true,
         canSearchBy: true,
         isJSON: false,
-        validateRule: 'string',
+        validateRule: 'date',
         sanitizeRule: '',
-        required: true
+        required: false
     }
 ]

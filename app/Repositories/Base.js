@@ -12,7 +12,6 @@ class BaseService {
     getAll(filters = {}) {
         let q = this.Model
             .query()
-            .whereApp(this.apiKey)
         if(q.standardFilters){
             q.standardFilters(filters)
         }

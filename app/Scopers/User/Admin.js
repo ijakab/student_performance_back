@@ -6,6 +6,10 @@ class AdminUserScoper extends BaseUserScoper{
         //throw error if user in this execution context cannot access records that this service handles, or those records do not exist
         if(this.user.role !== 'admin') throwError(401, 'Admin only')
     }
+    
+    async create(body) {
+        return super.create(body)
+    }
 }
 
 module.exports = AdminUserScoper

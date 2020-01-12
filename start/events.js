@@ -1,2 +1,0 @@
-const Event = use('Event')
-

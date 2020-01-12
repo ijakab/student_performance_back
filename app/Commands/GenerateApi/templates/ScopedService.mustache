@@ -1,12 +1,12 @@
 'use strict'
 const {{Model}} = use('App/Models/{{Model}}')
-const BaseService = use('App/Services/BaseService')
+const Base = use('App/Services/Base')
 
 //Scoped services handle actions on existing records and scope them to execution context (e.g. user). Such actions are delete and update
 //Do not write complicated logic in services (if possible) from service, as it should be independent of execution context
-//Make sure to call methods of BaseService, as they handle a some logic
+//Make sure to call methods of Base, as they handle a some logic
 
-class {{Model}}Service extends BaseService{
+class {{Model}}Service extends Base{
 
     constructor(ctx) {
         super(ctx, {{Model}});

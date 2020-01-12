@@ -8,7 +8,8 @@
     "start": "node server.js",
     "deploy": "node ace migration:run --force && node ace gbox:register",
     "docs": "rimraf public/docs && apidoc -i app/ -o public/docs",
-    "init": "node ace migration:run && node ace seed && npm run docs"
+    "init": "node ace migration:run && node ace seed && npm run docs",
+    "refresh": "node ace migration:refresh && node ace seed"
   },
   "author": "Ivan Jakab",
   "license": "UNLICENSED",

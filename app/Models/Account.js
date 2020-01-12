@@ -7,7 +7,6 @@ class Account extends Model {
     static boot() {
         super.boot()
 
-        this.addTrait('CastDate')
         // run before create and before update...
         this.addHook('beforeSave', 'Account.hashPassword')
     }

@@ -7,7 +7,6 @@ class Token extends Model {
     // --- CONFIGURATION
     static boot() {
         super.boot()
-        this.addTrait('CastDate')
     }
 
 }

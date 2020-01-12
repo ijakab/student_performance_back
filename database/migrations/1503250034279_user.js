@@ -14,11 +14,8 @@ class UserSchema extends Schema {
 
             table.string('firstname', 50).notNullable()
             table.string('lastname', 80)
-            table.date('dob')
-
-            table.dateTime('terms_accepted')
-            table.string('terms_ip', 45)
-
+            table.enu('role', ['admin', 'teacher', 'student'])
+            
             table.timestamps()
         })
     }

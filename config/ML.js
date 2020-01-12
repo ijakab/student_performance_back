@@ -57,5 +57,7 @@ module.exports = {
         'Walc',
         'absences',
         'G3'
-    ]
+    ],
+    
+    url: 'https://ussouthcentral.services.azureml.net/workspaces/7ead72a1a47b41ef8af974222279c00d/services/8e4faeca10c64df7b545c67f77f16b21/execute?api-version=2.0&details=true'
 }

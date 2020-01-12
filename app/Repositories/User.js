@@ -1,5 +1,6 @@
 const User = use('App/Models/User')
 const BaseRepository = use('App/Repositories/Base')
+const MLService = use('App/Services/ML')
 
 class UserRepository extends BaseRepository {
     constructor() {
@@ -36,6 +37,9 @@ class UserRepository extends BaseRepository {
     async addDetails(user, data) {
         let details = user.getRelated('details')
         if(!details) details = await user.details().create({})
+        
+        let G3 = await MLService.predictFromDetails(details)
+        details.G3 = G3
         
         details.merge(data)
         await details.save()

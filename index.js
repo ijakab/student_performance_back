@@ -42,43 +42,8 @@ async function bla() {
                     ],
                     "Values": [
                         [
-                            "value",
-                            "value",
-                            "0",
-                            "value",
-                            "value",
-                            "value",
-                            "0",
-                            "0",
-                            "value",
-                            "value",
-                            "value",
-                            "value",
-                            "0",
-                            "0",
-                            "0",
-                            "value",
-                            "value",
-                            "value",
-                            "value",
-                            "value",
-                            "value",
-                            "value",
-                            "value",
-                            "0",
-                            "0",
-                            "0",
-                            "0",
-                            "0",
-                            "0",
-                            "0",
-                            "0",
-                            "0",
-                            "0"
-                        ],
-                        [
-                            "value",
-                            "value",
+                            "",
+                            "",
                             "0",
                             "value",
                             "value",
@@ -117,10 +82,10 @@ async function bla() {
             "GlobalParameters": {}
         }
     
-        let res = await got('https://ussouthcentral.services.azureml.net/workspaces/7ead72a1a47b41ef8af974222279c00d/services/347ce2286dfa4efba0ac352f27452a26/execute?api-version=2.0&details=true', {
+        let res = await got('https://ussouthcentral.services.azureml.net/workspaces/7ead72a1a47b41ef8af974222279c00d/services/8e4faeca10c64df7b545c67f77f16b21/execute?api-version=2.0&details=true', {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer NbAfsidEhGmq0RaUgeflC8wrgkO+bX+9dSnSgmZEFBfPxqjG4tsSMsrYCsSudYV/e17B6i/mKOkS2ZYMRAt1gw==',
+                'Authorization': 'Bearer Wj7VY1CrQcYjAyhqXIpfB3UcjL7WKoWGaJf/4h/lRlQK2nOESZAbN5K5nOwiIFIjWq6VActBs2zgD1B9VAqnyg==',
                 'Accept': 'application/json'
             },
             method: 'POST',

@@ -21,6 +21,7 @@ class MLService {
         for(let feature of allFeatures) {
             body.Inputs.input1.ColumnNames.push(feature)
             let value = userDetails[feature] || '0'
+            if(feature === 'G3') value = '0'
             body.Inputs.input1.Values[0].push(value)
         }
 

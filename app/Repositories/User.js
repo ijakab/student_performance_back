@@ -37,11 +37,11 @@ class UserRepository extends BaseRepository {
     async addDetails(user, data) {
         let details = user.getRelated('details')
         if(!details) details = await user.details().create({})
+        details.merge(data)
         
         let G3 = await MLService.predictFromDetails(details)
         details.G3 = G3
         
-        details.merge(data)
         await details.save()
     }
 }
